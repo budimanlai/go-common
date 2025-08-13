@@ -25,7 +25,7 @@ func TestTimeToString(t *testing.T) {
 
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
-			got := TimeToString(tc.input)
+			got := TimeToString(&tc.input, "")
 			if got != tc.expected {
 				t.Errorf("TimeToString(%v) = %q; want %q", tc.input, got, tc.expected)
 			}
@@ -97,7 +97,7 @@ func TestTimeToStringAndBack(t *testing.T) {
 
 	for _, tc := range tt {
 		t.Run(tc.name, func(t *testing.T) {
-			str := TimeToString(tc.input)
+			str := TimeToString(&tc.input, "")
 			_, err := StringToTime(str)
 			if err != nil {
 				t.Fatalf("StringToTime(%q) unexpected error: %v", str, err)

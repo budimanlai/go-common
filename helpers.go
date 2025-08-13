@@ -138,3 +138,21 @@ func HashPassword(password string) string {
 	}
 	return string(hash)
 }
+
+// CheckPasswordHash memvalidasi apakah password plaintext cocok dengan hash bcrypt.
+// Mengembalikan true jika cocok, false jika tidak, dan error jika terjadi masalah saat validasi.
+//
+// Contoh penggunaan:
+//
+//	ok, err := CheckPasswordHash("passwordku", hash)
+//	fmt.Println(ok, err)
+func CheckPasswordHash(password, hash string) (bool, error) {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	if err != nil {
+		if err == bcrypt.ErrMismatchedHashAndPassword {
+			return false, nil
+		}
+		return false, err
+	}
+	return true, nil
+}

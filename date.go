@@ -12,7 +12,10 @@ import (
 // t := time.Now()
 // formattedTime := TimeToString(t)
 // fmt.Println(formattedTime) // Output: "2023-10-01 12:34:56" (contoh, tergantung waktu saat ini)
-func TimeToString(t time.Time) string {
+func TimeToString(t *time.Time, defaultValue string) string {
+	if t == nil {
+		return defaultValue
+	}
 	return t.Format("2006-01-02 15:04:05")
 }
 
@@ -84,4 +87,20 @@ func StringWithTZToLocalTime(s string) (time.Time, error) {
 // fmt.Println(currentTime) // Output: "2023-10-01 12:34:56" (contoh, tergantung waktu saat ini)
 func GetCurrentTimeInLocalZone() time.Time {
 	return time.Now().In(time.Local)
+}
+
+// StringToDateOnly mengonversi string dengan format "2006-01-02" ke objek time.Time tanpa jam dan menit.
+// Jika string tidak sesuai format, fungsi ini akan mengembalikan zero time dan error.
+//
+// Contoh penggunaan:
+// s := "2023-10-01"
+// t, err := StringToDateOnly(s)
+//
+//	if err != nil {
+//	    fmt.Println("Format tanggal tidak valid:", err)
+//	} else {
+//	    fmt.Println(t)
+//	}
+func StringToDateOnly(s string) (time.Time, error) {
+	return time.Parse("2006-01-02", s)
 }

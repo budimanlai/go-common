@@ -6,6 +6,36 @@ import (
 	"unicode"
 )
 
+// StringToPtr mengonversi string menjadi pointer ke string.
+//
+// Contoh penggunaan:
+//
+//	ptr := StringToPtr("hello")
+//	// ptr adalah *string yang menunjuk ke "hello"
+//
+// StringToPtr mengonversi string menjadi pointer ke string.
+// Jika string kosong, akan mengembalikan pointer ke nilai default (jika diberikan).
+//
+// Contoh penggunaan:
+//
+//	ptr := StringToPtr("hello", "default")
+//	// ptr adalah *string yang menunjuk ke "hello"
+//	ptr2 := StringToPtr("", "default")
+//	// ptr2 adalah *string yang menunjuk ke "default"
+func StringToPtr(s string) *string {
+	if s == "" {
+		return nil
+	}
+	return &s
+}
+
+func PtrToString(ptr *string) string {
+	if ptr == nil {
+		return ""
+	}
+	return *ptr
+}
+
 // CapitalizeName mengubah setiap huruf pertama dari kata pada nama menjadi huruf besar,
 // dan huruf selanjutnya menjadi huruf kecil.
 //
