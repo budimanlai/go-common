@@ -10,6 +10,14 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// PtrToFloat64 mengembalikan nilai float64 dari pointer, atau 0 jika nil.
+func PtrToFloat64(ptr *float64) float64 {
+	if ptr == nil {
+		return 0
+	}
+	return *ptr
+}
+
 // NormalizePhoneNumber menormalkan string nomor telepon Indonesia ke format internasional yang diawali dengan "62".
 // Fungsi ini menghapus semua karakter non-digit dari input, lalu menerapkan aturan berikut:
 //   - Jika nomor diawali dengan "62", maka dikembalikan apa adanya.
