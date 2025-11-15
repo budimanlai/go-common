@@ -1,5 +1,7 @@
 # go-common
 
+Please use https://github.com/budimanlai/go-pkg
+
 Kumpulan utilitas dan helper Go yang dapat digunakan kembali untuk tugas-tugas umum dalam pengembangan web, pemrosesan data, dan lainnya.
 
 ## Fitur
